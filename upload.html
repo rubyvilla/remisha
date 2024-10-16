@@ -38,7 +38,7 @@
                 return;
             }
 
-            const storageRef = storage.ref('uploads/' + file.name);
+            const storageRef = storage.ref('upload/' + file.name);
             storageRef.put(file).then(() => {
                 alert('File uploaded successfully!');
             }).catch((error) => {
