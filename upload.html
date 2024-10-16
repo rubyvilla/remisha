@@ -21,7 +21,7 @@
 
         // Initialize Firebase
 	const app = firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
+        const storage = firebase.storage(app);
 
           // Function to resize image
         function resizeImage(file, width, height) {
