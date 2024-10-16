@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Upload with Firebase</title>
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>-->
+    <script  type="module">
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
+    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js";
+	</script>
 
 </head>
 <body>
@@ -27,10 +31,10 @@
 
 
         // Initialize Firebase
-       const app = firebase.initializeApp(firebaseConfig);
-        const storage = firebase.storage();
+		const app = initializeApp(firebaseConfig);
+        const storage = storage();
 
-        // Function to resize image
+          // Function to resize image
         function resizeImage(file, width, height) {
             return new Promise((resolve, reject) => {
                 const img = document.createElement("img");
@@ -86,4 +90,3 @@
     </script>
 </body>
 </html>
-
