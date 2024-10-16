@@ -4,21 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Upload with Firebase</title>
-    <!-- Firebase SDK 
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>-->
-    <script>
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
-    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js";
-	</script>
-
-</head>
-<body>
-    <h1>Upload a File</h1>
-    <input type="file" id="fileInput" />
-    <button id="uploadButton">Upload</button>
-
-	 <script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+   <script>
     const firebaseConfig = {
 		apiKey: "AIzaSyAIyz6BsrmsnJBrm2vwDdD2AgLrUTOOgXE",
 		authDomain: "remisha-f8e73.firebaseapp.com",
@@ -31,8 +20,8 @@
 
 
         // Initialize Firebase
-		const app = initializeApp(firebaseConfig);
-        const storage = storage();
+	const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
 
           // Function to resize image
         function resizeImage(file, width, height) {
@@ -88,5 +77,13 @@
             };
         });
     </script>
+
+</head>
+<body>
+    <h1>Upload a File</h1>
+    <input type="file" id="fileInput" />
+    <button id="uploadButton">Upload</button>
+
+	
 </body>
 </html>
