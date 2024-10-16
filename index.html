@@ -74,14 +74,14 @@
                     // Create HTML elements to display the image
                     const div = document.createElement('div');
                     div.className = 'grid-item';
-                    div.innerHTML = '
+                    div.innerHTML = `
                         <figure class="effect-sadie">
                             <img src="${downloadURL}" alt="Uploaded Image" class="img-fluid tm-img">
                             <figcaption>                             
                                 <a href="${downloadURL}"></a>
                             </figcaption>
                         </figure>
-                    ';
+                    `;
                     imageGallery.appendChild(div);
                 });
             } catch (error) {
