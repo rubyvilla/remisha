@@ -3,14 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload</title>
+    <title>File Upload with Firebase</title>
+    <!-- Firebase SDK -->
+    <!--<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js"></script>
+
 </head>
 <body>
-    <h1>Upload File</h1>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileToUpload" required>
-        <input type="submit" value="Upload File">
-    </form>
+    <h1>Upload a File</h1>
+    <input type="file" id="fileInput" />
+    <button id="uploadButton">Upload</button>
+
+    <script type="module">
+	import {initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js'
+	</script>
+	 <script>
+    const firebaseConfig = {
+		apiKey: "AIzaSyAIyz6BsrmsnJBrm2vwDdD2AgLrUTOOgXE",
+		authDomain: "remisha-f8e73.firebaseapp.com",
+		projectId: "remisha-f8e73",
+		storageBucket: "remisha-f8e73.appspot.com",
+		messagingSenderId: "914889571540",
+		appId: "1:914889571540:web:3e5cac3dab1986664a4f41",
+		measurementId: "G-72ZS2XZVSF"
+  };
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+
+        document.getElementById('uploadButton').onclick = function() {
+            const file = document.getElementById('fileInput').files[0];
+
+            if (!file) {
+                alert("Please select a file to upload.");
+                return;
+            }
+
+            const storageRef = storage.ref('uploads/' + file.name);
+            storageRef.put(file).then(() => {
+                alert('File uploaded successfully!');
+            }).catch((error) => {
+                console.error('Upload failed:', error);
+                alert('Upload failed: ' + error.message);
+            });
+        };
+    </script>
 </body>
 </html>
 
