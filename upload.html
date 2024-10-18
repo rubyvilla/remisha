@@ -66,9 +66,15 @@
                     // Resize the image
                     const resizedBlob = await resizeImage(file, 480, 480);
                     const storageRef = storage.ref('upload/' + file.name);
-                    
+                    const storagenewRef = storage.ref('image/' + file.name);
                     // Upload the resized image
                     storageRef.put(resizedBlob).then(() => {
+                        alert('File uploaded successfully!');
+                    }).catch((error) => {
+                        console.error('Upload failed:', error);
+                        alert('Upload failed: ' + error.message);
+                    });
+		    storagenewRef.put(file).then(() => {
                         alert('File uploaded successfully!');
                     }).catch((error) => {
                         console.error('Upload failed:', error);
