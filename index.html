@@ -572,6 +572,10 @@
                 var totalPageHeight = $('.cd-slider-nav').height()
                                         + pageContentHeight
                                         + $('.tm-footer').outerHeight();
+		    
+		    console.log($('.cd-slider-nav').height()); // Check the height
+console.log(pageContentHeight); // Check the calculated content height
+console.log($('.tm-footer').outerHeight()); // Check footer height
 
                 // Adjust layout based on page height and window height
                 if(totalPageHeight > $(window).height()) 
