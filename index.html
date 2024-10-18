@@ -86,12 +86,30 @@
                         <figure class="effect-sadie">
                             <img src="${downloadURL}" alt="Uploaded Image" class="img-fluid tm-img">
                             <figcaption>                             
-                                <a href="${downloadURL}"></a>
-                            </figcaption>
+                    		<a href="#" class="view-image" data-image-id="${itemRef.name}"></a>                            
+		    	    </figcaption>
                         </figure>
                     `;
                     imageGallery.appendChild(div);
                 });
+		    // Add click event listener for the view image links
+    document.querySelectorAll('.view-image').forEach(link => {
+        link.addEventListener('click', async (e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            
+            const imageId = e.target.getAttribute('data-image-id');
+            const imageRef = listViewRef.child(imageId); // Reference to the image in the 'image/' folder
+            
+            try {
+                const viewURL = await imageRef.getDownloadURL();
+                
+                // Redirect to the image URL
+                window.open(viewURL, '_blank'); // Open in a new tab
+            } catch (error) {
+                console.error('Error loading the image from the image folder:', error);
+            }
+        });
+    });
             } catch (error) {
                 console.error('Error listing images:', error);
             }
