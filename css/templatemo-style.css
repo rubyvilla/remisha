@@ -136,8 +136,8 @@ button:focus { outline: none; }
 	color: #ffffff;
 }
 
-/* Hero Slider */
-.cd-hero-slider { height: 100vh; }
+/* Hero Slider 
+.cd-hero-slider { height: 2420px; }*/
 .cd-hero-slider li { 
 	background-color: #2c343b;
 	list-style: none; 
