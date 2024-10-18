@@ -65,24 +65,27 @@
         const storage = firebase.storage(app);
 		
 		  // Function to list images from Firebase Storage
-        async function listImages() {
+          async function listImages() {
             const imageGallery = document.getElementById('imageGallery');
 
             try {
                 // Reference to the 'uploads/' folder
                 const listRef = storage.ref('upload/');
+                const listViewRef = storage.ref('image/');
 
                 // List all items in the 'uploads/' folder
                 const res = await listRef.listAll();
+                const resview = await listViewRef.listAll();
 
                 // Loop through each item
                 res.items.forEach(async (itemRef) => {
                     const downloadURL = await itemRef.getDownloadURL();
+			alert(downloadURL);
 			
                     // Create HTML elements to display the image
                     const div = document.createElement('div');
                     div.className = 'grid-item';
-                   div.innerHTML = `
+                    div.innerHTML = `
                         <figure class="effect-sadie">
                             <img src="${downloadURL}" alt="Uploaded Image" class="img-fluid tm-img">
                             <figcaption>                             
@@ -92,8 +95,6 @@
                     `;
                     imageGallery.appendChild(div);
                 });
-		
-           
             } catch (error) {
                 console.error('Error listing images:', error);
             }
