@@ -559,20 +559,19 @@ function adjustHeightOfPage(pageNo) {
     var pageContentHeight = 0;
     var $currentPage = $('div[data-page-no="' + pageNo + '"]');
 
+    // Check if the page exists
     if (!$currentPage.length) {
         console.warn('Page not found:', pageNo);
         return;
     }
 
     var pageType = $currentPage.data("page-type");
-    
-    // Initialize a counter for loaded images
-    let imageCount = 0;
-    const images = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") img");
-    
-    // Function to calculate and set height
-    const calculateAndSetHeight = () => {
-        // Calculate content height
+    var images = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") img");
+    var totalImages = images.length;
+    var imagesLoaded = 0;
+
+    // Function to calculate and set the height
+    function calculateAndSetHeight() {
         if (pageType === "gallery") {
             pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height() || 0;
         } else {
@@ -580,7 +579,8 @@ function adjustHeightOfPage(pageNo) {
         }
 
         var totalPageHeight = $('.cd-slider-nav').height() + pageContentHeight + $('.tm-footer').outerHeight();
-        
+
+        // Adjust layout based on total page height
         if (totalPageHeight > $(window).height()) {
             $('.cd-hero-slider').addClass('small-screen');
             $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
@@ -588,32 +588,30 @@ function adjustHeightOfPage(pageNo) {
             $('.cd-hero-slider').removeClass('small-screen');
             $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
         }
-    };
+    }
 
-    // Check if there are any images to load
-    if (images.length) {
+    // Check if there are images to load
+    if (totalImages > 0) {
         images.each(function() {
             $(this).on('load', function() {
-                imageCount++;
-                // If all images are loaded, calculate the height
-                if (imageCount === images.length) {
+                imagesLoaded++;
+                if (imagesLoaded === totalImages) {
                     calculateAndSetHeight();
                 }
             }).on('error', function() {
-                // Handle image loading error
-                imageCount++;
-                if (imageCount === images.length) {
+                // Count error as well
+                imagesLoaded++;
+                if (imagesLoaded === totalImages) {
                     calculateAndSetHeight();
                 }
             });
         });
     } else {
-        // If no images, directly calculate height
+        // If no images, calculate height immediately
         calculateAndSetHeight();
     }
-}
-
-            /*
+}           
+		/*
                 Everything is loaded including images.
             */
             $(window).load(function(){
