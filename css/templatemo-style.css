@@ -137,7 +137,7 @@ button:focus { outline: none; }
 }
 
 /* Hero Slider */
-.cd-hero-slider { height: 650vh; }
+.cd-hero-slider { height: 390vh; }
 .cd-hero-slider li { 
 	background-color: #2c343b;
 	list-style: none; 
