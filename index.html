@@ -92,7 +92,7 @@
                     `;
                     imageGallery.appendChild(div);
                 });
-		    // Add click event listener for the view image links
+		 // Add click event listener for the view image links
     document.querySelectorAll('.view-image').forEach(link => {
         link.addEventListener('click', async (e) => {
             e.preventDefault(); // Prevent default anchor behavior
@@ -102,6 +102,7 @@
             
             try {
                 const viewURL = await imageRef.getDownloadURL();
+                console.log('Image URL:', viewURL); // Log the URL to check its correctness
                 
                 // Redirect to the image URL
                 window.open(viewURL, '_blank'); // Open in a new tab
