@@ -148,7 +148,7 @@ Slider
 
 .cd-hero-slider {
   position: relative;
-  height: 10000px;
+  height: 16200px;
   overflow: hidden;
   
 }
@@ -183,12 +183,12 @@ Slider
 }
 @media only screen and (min-width: 768px) {
   .cd-hero-slider {
-     height: 2420px;
+     height: 3230px;
   }
 }
 @media only screen and (min-width: 1170px) {
   .cd-hero-slider {
-    height: 2420px;
+    height: 3230px;
   }
 }
 
