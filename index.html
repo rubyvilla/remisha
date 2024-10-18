@@ -69,15 +69,18 @@
 
             try {
                 // Reference to the 'uploads/' folder
-                const listRef = storage.ref('image/');
+                const listRef = storage.ref('upload/');
+                const listViewRef = storage.ref('image/');
 
                 // List all items in the 'uploads/' folder
                 const res = await listRef.listAll();
+                const resview = await listViewRef.listAll();
 
                 // Loop through each item
                 res.items.forEach(async (itemRef) => {
                     const downloadURL = await itemRef.getDownloadURL();
-
+			alert(downloadURL);
+			
                     // Create HTML elements to display the image
                     const div = document.createElement('div');
                     div.className = 'grid-item';
